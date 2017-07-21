@@ -28,6 +28,9 @@ tag=""
 if [[ -n $PLUGIN_TOKEN ]]; then
     token="-t $PLUGIN_TOKEN"
 fi
+if [[ -n $CODECOV_TOKEN ]]; then
+    token="-t $CODECOV_TOKEN"
+fi
 if [[ -n $DRONE_BRANCH ]]; then
     branch="-B $DRONE_BRANCH"
 fi
