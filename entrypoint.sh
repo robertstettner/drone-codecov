@@ -71,3 +71,5 @@ if [[ $exitcode -eq 0 ]]; then
 else
     echo "-- Coverage failed to push to Codecov!"
 fi
+
+exit $exitcode
