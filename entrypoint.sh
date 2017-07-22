@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 
+set -e
+
 starttime=$(date +%s.%N)
 files="${FILES:-$PLUGIN_FILES}"
 flags="${FLAGS:-$PLUGIN_FLAGS}"
 
 echo "-- Pushing coverage to Codecov..."
+
+# check codecov token exist.
+if [[ -z $PLUGIN_TOKEN ]] && [[ -z $CODECOV_TOKEN ]]; then
+    echo "-- Error: missing Codecov token"
+    exit 1
+fi
+
+set +e
 
 sfiles=""
 for f in $(echo $files | tr -d '[[:space:]]' | tr "," "\n"); do
