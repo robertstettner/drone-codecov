@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# check codecov token exist.
+if [[ ! -n $PLUGIN_TOKEN ]] && [[ ! -n $CODECOV_TOKEN ]]; then
+    echo "missing codecov token"
+    exit 1
+fi
+
 starttime=$(date +%s.%N)
 files="${FILES:-$PLUGIN_FILES}"
 flags="${FLAGS:-$PLUGIN_FLAGS}"
