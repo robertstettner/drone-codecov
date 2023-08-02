@@ -28,6 +28,7 @@ if [[ -n $flags ]]; then
     sflags="-F $flags"
 fi
 
+host=""
 token=""
 branch=""
 commit=""
@@ -35,6 +36,9 @@ pr=""
 buildnum=""
 tag=""
 
+if [[ -n $SELF_HOST ]]; then
+    host="-u $SELF_HOST"
+fi
 if [[ -n $PLUGIN_TOKEN ]]; then
     token="-t $PLUGIN_TOKEN"
 fi
@@ -59,10 +63,10 @@ fi
 
 if [[ $PLUGIN_DEBUG = "true" ]]; then
     echo "-- DEBUG: running following command..."
-    echo "-- DEBUG: codecov $token $sfiles $sflags $branch $commit $pr $buildnum $tag"
+    echo "-- DEBUG: codecov $host $token $sfiles $sflags $branch $commit $pr $buildnum $tag"
 fi
 
-exitcode=`codecov -Z $token $sfiles $sflags \
+exitcode=`codecov -Z $host $token $sfiles $sflags \
     $branch \
     $commit \
     $pr \
